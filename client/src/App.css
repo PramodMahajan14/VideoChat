@@ -1,0 +1,42 @@
+.msg-box {
+  font-style: italic;
+  color: #2196f3;
+  font-size: 18px;
+  text-align: center;
+  position: absolute;
+  width: auto;
+  bottom: 10px;
+  visibility: hidden;
+}
+.form-container,
+.design-content {
+  margin-top: 50px;
+  min-height: 350px;
+  font-family: "Times New Roman", Times, serif;
+}
+.bs-callout {
+  padding: 10px 20px;
+  margin: 20px 0;
+  border: 1px solid #c6eaf5;
+  border-left-width: 5px;
+  border-radius: 3px;
+  background: #ddf6fd;
+}
+
+.text-info {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 500;
+  display: inline;
+}
+.text-info h1 {
+  color: black;
+  font-size: 60px;
+}
+.head-icon {
+  border: none;
+}
+button {
+  font-weight: 700;
+  font-size: x-large;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
