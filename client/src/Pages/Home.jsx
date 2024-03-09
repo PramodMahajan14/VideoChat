@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import React, { useSocket } from "../Provider/socket";
 import { useNavigate } from "react-router-dom";
-import video from "../assets/Images/video.svg";
+import { VideoCameraAddOutlined } from "@ant-design/icons";
+import Navbar from "../Components/Navbar";
 
 const Home = () => {
   const [email, setemail] = useState("");
@@ -9,12 +10,18 @@ const Home = () => {
   const { socket } = useSocket();
   const navigate = useNavigate();
 
-  const handleJoinedRoom = ({ roomId }) => {
-    navigate(`/room/${roomId}`);
-  };
+  const handleJoinedRoom = useCallback(
+    ({ roomId }) => {
+      navigate(`/room/${roomId}`);
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     socket.on("joined-room", handleJoinedRoom);
+    return () => {
+      socket.off("joined-room", handleJoinedRoom);
+    };
   }, [socket]);
 
   const handleJoinRoom = () => {
@@ -22,17 +29,17 @@ const Home = () => {
   };
   return (
     <>
+      <Navbar />
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="form-container">
               <div className="text-info">
-                <img
-                  src={video}
-                  alt="pic"
-                  className="col-sm-6 col-md-4 col-lg-2 img-thumbnail head-icon"
-                />
                 <h1>Video calls with anyone, anywhere</h1>
+                <p>
+                  Google meet provide secure, easy to use video calls and
+                  meeting for everyone, on any device
+                </p>
               </div>
 
               <div className="form-group">
@@ -59,13 +66,14 @@ const Home = () => {
                 />
               </div>
 
-              <div class="d-grid gap-2 col-6 mx-auto mt-4">
+              <div class="d-grid gap-2 col-4 mx-auto mt-4">
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary d-flex align-items-center "
                   type="button"
                   onClick={handleJoinRoom}
                 >
-                  Join
+                  <VideoCameraAddOutlined className="v-icon" /> Invite your
+                  friends
                 </button>
               </div>
             </div>
